@@ -3,12 +3,13 @@ import BotCard from "./BotCard";
 function BotCollection() {
   const [BotData, setBotData] = useState([]);
   useEffect(() => {
-   /*  fetch("http://localhost:4001/bots") */
-    fetch("https://bot-battlr-json-server.onrender.com/bots")
+    fetch("http://localhost:4001/bots")
+    /* fetch("https://bot-battlr-json-server.onrender.com/bots") */
       .then((res) => res.json())
-      .then((data) => setBotData(data));
+      .then((data) => setBotData(data))
+      
   }, []);
-  console.log(BotData);
+ 
   if(!BotData[0]){
     return <h2>Loading...</h2>
   }

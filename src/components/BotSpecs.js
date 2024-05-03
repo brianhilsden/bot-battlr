@@ -12,8 +12,8 @@ function BotSpecs(){
     const [bot,setBot] = useState({})
     console.log(params);
     useEffect(()=>{
-       /*  fetch(`http://localhost:4001/bots/${botId}`) */
-        fetch(`https://bot-battlr-json-server.onrender.com/bots/${botId}`)
+        fetch(`http://localhost:4001/bots/${botId}`)
+       /*  fetch(`https://bot-battlr-json-server.onrender.com/bots/${botId}`) */
         .then(res=>res.json())
         .then(data=>setBot(data))
     },[botId])
@@ -21,7 +21,8 @@ function BotSpecs(){
         return <p >Loading...</p>
     }
     function enlistBot(){
-        fetch("https://bot-battlr-json-server.onrender.com/your_army",{
+        fetch("http://localhost:4001/your_army",
+        /* fetch("https://bot-battlr-json-server.onrender.com/your_army", */{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
@@ -33,27 +34,38 @@ function BotSpecs(){
         .then(res=>res.json())
         .then(data=>setYourArmy(yourArmy=>([...yourArmy,data])))
         .then(()=>{
+            removeBot()
+        })
+        .then(()=>{
             navigate("/bot-battlr")
         })
 
     }
+    function removeBot(){
+        fetch(`http://localhost:4001/bots/${botId}`,{
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+    }
     return(
-            <div style={{ display: "flex", justifyContent: "center", height:"100vh", alignItems:"center",gap:"2rem" }}>
+            <div style={{ display: "flex", justifyContent: "center", height:"100vh",gap:"2rem", marginTop:"2rem" }}>
                 <div>
-                    <img src={bot.avatar_url}/>
+                    <img src={bot.avatar_url} style={{borderRadius:"50%", border:"grey solid 1px"}}/>
                 </div>
 
-                <div style={{width:"30%"}} className="text-center">
+                <div style={{width:"30%"}} className="d-flex flex-column align-items-center">
                     <h2>Name:{bot.name} </h2>
                     <p><b>Catchphrase</b></p>
                     <p>{bot.catchphrase}</p>
                     <br/>
                     <p><b>Class:{bot.bot_class}</b></p>
-                    <div>
-                        <img src={logo} style={{width:"8%"}}/>{bot.health}  ⚡{bot.damage}  🛡️{bot.armor}
+                    <div style={{border: "1px solid grey", borderRadius: "8px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                        <img src={logo} style={{width:"8%"}}/>{bot.health}&nbsp;&nbsp;<span>⚡{bot.damage}</span>&nbsp;&nbsp; <span>🛡️{bot.armor}</span>
                     </div>
-                    <button onClick={()=>navigate("/bot-battlr") } className="btn btn-secondary mx-2">Go Back</button>
-                    <button className="btn btn-primary mx-2" onClick={enlistBot}>Enlist</button>
+                    <button onClick={()=>navigate("/bot-battlr") } className="btn btn-secondary mx-2 mt-2 mb-2" style={{width:"100%"}}>Go Back</button>
+                    <button className="btn btn-primary mx-2" onClick={enlistBot} style={{width:"100%"}}>Enlist</button>
                 </div>
             </div>
     )

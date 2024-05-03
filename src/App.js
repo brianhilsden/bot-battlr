@@ -9,7 +9,8 @@ import { useState,useEffect } from 'react';
 function App() {
   const [yourArmy,setYourArmy] = useState([])
   useEffect(()=>{
-      fetch("https://bot-battlr-json-server.onrender.com/your_army")
+      fetch("http://localhost:4001/your_army")
+      /* fetch("https://bot-battlr-json-server.onrender.com/your_army") */
       .then(res=>res.json())
       .then(data=>setYourArmy(data))
   },[])

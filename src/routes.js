@@ -15,7 +15,7 @@ const routes = [
             element:<BotCollection/>},
          
         {
-            path:"/bot-battlr/botspecs/:id",
+            path:"/bot-battlr/:id",
             element:<BotSpecs/>
         }
 

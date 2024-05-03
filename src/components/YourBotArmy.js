@@ -1,14 +1,14 @@
-import BotCard from "./BotCard"
+import YourArmyBotCard from "./YourArmyBotCard";
 
 function YourBotArmy({yourArmy}){
 
     return(
         <>
-        {yourArmy[0] && <div style={{ display: 'flex',flexWrap:"wrap",gap:"1rem" }}>
+            {yourArmy[0] && <div className="mb-2 p-1" style={{ overflowX: 'auto', display: 'flex', gap: "1rem", background: "#C0FF02" }}>
         {
             yourArmy.map(bot=>{
                 return(
-                    <BotCard key={bot.id} id={bot.id} image={bot.avatar_url} name={bot.name} botClass={bot.bot_class} catchphrase={bot.catchphrase} health={bot.health} damage={bot.damage} armor={bot.armor} />
+                    <YourArmyBotCard key={`Y${bot.id}`} id={bot.id} image={bot.avatar_url} name={bot.name} botClass={bot.bot_class} catchphrase={bot.catchphrase} health={bot.health} damage={bot.damage} armor={bot.armor} />
                 )
             })
 
