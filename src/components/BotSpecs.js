@@ -15,7 +15,7 @@ function BotSpecs(){
         return <p >Loading...</p>
     }
     return(
-        <div style={{display:"flex",justifyContent:"center",width:"100%",background:"black"}} >
+        <div style={{display:"flex",justifyContent:"center",width:"100%"}} >
            
             <div > 
                 <h2>Name:{bot.name} </h2>

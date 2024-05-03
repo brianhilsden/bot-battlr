@@ -3,7 +3,7 @@ import BotCard from "./BotCard";
 function BotCollection() {
   const [BotData, setBotData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/bots")
+    fetch("https://bot-battlr-json-server.onrender.com/bots")
       .then((res) => res.json())
       .then((data) => setBotData(data));
   }, []);
