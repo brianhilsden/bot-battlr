@@ -1,6 +1,6 @@
 import YourArmyBotCard from "./YourArmyBotCard";
 
-function YourBotArmy({yourArmy}){
+function YourBotArmy({yourArmy,setYourArmy,setBotData}){
 
     return(
         <>
@@ -8,7 +8,7 @@ function YourBotArmy({yourArmy}){
         {
             yourArmy.map(bot=>{
                 return(
-                    <YourArmyBotCard key={`Y${bot.id}`} id={bot.id} image={bot.avatar_url} name={bot.name} botClass={bot.bot_class} catchphrase={bot.catchphrase} health={bot.health} damage={bot.damage} armor={bot.armor} />
+                    <YourArmyBotCard key={`Y${bot.id}`} id={bot.id} bot={bot} image={bot.avatar_url} name={bot.name} botClass={bot.bot_class} catchphrase={bot.catchphrase} health={bot.health} damage={bot.damage} armor={bot.armor} setYourArmy={setYourArmy} setBotData={setBotData}/>
                 )
             })
 

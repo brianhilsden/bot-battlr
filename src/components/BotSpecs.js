@@ -4,13 +4,12 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 function BotSpecs(){
-    const [setYourArmy] = useOutletContext()
-    
+    const [ ,setYourArmy,setBotData] = useOutletContext()
     const navigate = useNavigate()
     const params= useParams()
     const botId = params.id
     const [bot,setBot] = useState({})
-    console.log(params);
+
     useEffect(()=>{
         fetch(`http://localhost:4001/bots/${botId}`)
        /*  fetch(`https://bot-battlr-json-server.onrender.com/bots/${botId}`) */
@@ -36,9 +35,7 @@ function BotSpecs(){
         .then(()=>{
             removeBot()
         })
-        .then(()=>{
-            navigate("/bot-battlr")
-        })
+        
 
     }
     function removeBot(){
@@ -47,6 +44,13 @@ function BotSpecs(){
             headers:{
                 "Content-Type":"application/json"
             }
+        }).then(()=>{
+            setBotData(prevState=>prevState.filter(item=>{
+                
+                return item.id!=botId
+            }))
+        }).then(()=>{
+            navigate("/bot-battlr")
         })
     }
     return(

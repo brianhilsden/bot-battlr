@@ -1,18 +1,12 @@
-import { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import BotCard from "./BotCard";
 function BotCollection() {
-  const [BotData, setBotData] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:4001/bots")
-    /* fetch("https://bot-battlr-json-server.onrender.com/bots") */
-      .then((res) => res.json())
-      .then((data) => setBotData(data))
-      
-  }, []);
+  const [BotData] = useOutletContext()
+  console.log(BotData);
  
-  if(!BotData[0]){
-    return <h2>Loading...</h2>
-  }
+    if(!BotData || !BotData[0]){
+      return <h2>Loading...</h2>
+    }
   return (
     <div style={{ display: 'flex',flexWrap:"wrap",justifyContent:"center",gap:"1rem" }}>
         {
