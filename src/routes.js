@@ -6,16 +6,16 @@ import ErrorPage from "./components/ErrorPage";
 
 const routes = [
     { 
-    path: "/",
+    path: "/bot-battlr",
     element: <App />,
     errorElement: <ErrorPage />,
     children:[
         {
-            path:"/",
+            path:"/bot-battlr",
             element:<BotCollection/>},
          
         {
-            path:"/botspecs/:id",
+            path:"/bot-battlr/botspecs/:id",
             element:<BotSpecs/>
         }
 
