@@ -1,3 +1,4 @@
+import logo from "./heart-ecg.png"
 function BotCard({
   id,
   image,
@@ -14,11 +15,8 @@ function BotCard({
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
         <p className="card-text">{catchphrase}</p>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">Health: {health}</li>
-          <li className="list-group-item">Damage: {damage}</li>
-          <li className="list-group-item">Armor: {armor}</li>
-        </ul>
+        <p className="card-text"><img src={logo} style={{width:"15%"}}></img>{health}  ⚡{damage}  🛡️{armor}</p>
+       
       </div>
     </div>
   );
