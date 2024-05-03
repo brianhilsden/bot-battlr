@@ -9,8 +9,8 @@ function BotSpecs(){
     const [bot,setBot] = useState({})
     console.log(params);
     useEffect(()=>{
-        fetch(`http://localhost:4001/bots/${botId}`)
-        /* fetch(`https://bot-battlr-json-server.onrender.com/bots/${botId}`) */
+       /*  fetch(`http://localhost:4001/bots/${botId}`) */
+        fetch(`https://bot-battlr-json-server.onrender.com/bots/${botId}`)
         .then(res=>res.json())
         .then(data=>setBot(data))
     },[botId])
