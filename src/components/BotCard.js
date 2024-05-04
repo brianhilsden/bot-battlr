@@ -1,15 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import logo from "./heart-ecg.png"
-function BotCard({
-  id,
-  image,
-  name,
-  botClass,
-  catchphrase,
-  health,
-  damage,
-  armor,
-}) {
+function BotCard({ id, image, name, botClass, catchphrase, health, damage, armor }) {
 
   const navigate = useNavigate()
   return (

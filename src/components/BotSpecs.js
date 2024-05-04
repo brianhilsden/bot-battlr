@@ -59,11 +59,8 @@ function BotSpecs(){
     }else{
         alert("Team complete. To select new ones, release or discharge members of your army")
     }
-
-
-
-
     }
+    
     function removeFromCollection(){
         fetch(`${BOT_API_URL}/${botId}`,{
             method:"DELETE",
