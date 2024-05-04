@@ -3,8 +3,6 @@ import YourBotArmy from './components/YourBotArmy';
 import { Outlet } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
-/* const YOUR_ARMY_URL = "http://localhost:4001/your_army";
-const BOTS_URL = "http://localhost:4001/bots"; */
 const YOUR_ARMY_URL = "https://bot-battlr-json-server.onrender.com/your_army";
 const BOTS_URL = "https://bot-battlr-json-server.onrender.com/bots";
 export const emojis = [{Assault:"🛩️"},{Medic:"🚑"},{Defender:"🛡️"},{Witch:" 🧙‍♀️"},{Captain:"👨‍✈️"},{Support:"🪖"}]

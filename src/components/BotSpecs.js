@@ -6,8 +6,6 @@ import { useOutletContext } from "react-router-dom";
 import { emojis } from "../App";
 import EditBot from "./EditBot";
 
-/* const BOT_API_URL = "http://localhost:4001/bots";
-const YOUR_ARMY_API_URL = "http://localhost:4001/your_army"; */
 const BOT_API_URL = "https://bot-battlr-json-server.onrender.com/bots";
 const YOUR_ARMY_API_URL = "https://bot-battlr-json-server.onrender.com/your_army";
 

@@ -1,9 +1,6 @@
 import logo from "./heart-ecg.png";
 import { emojis } from "../App";
 
-/* const YOUR_ARMY_API = "http://localhost:4001/your_army";
-const BOTS_API = "http://localhost:4001/bots"; */
-
 const YOUR_ARMY_API = "https://bot-battlr-json-server.onrender.com/your_army";
 const BOTS_API = "https://bot-battlr-json-server.onrender.com/bots";
 
