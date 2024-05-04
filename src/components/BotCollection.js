@@ -9,14 +9,14 @@ function BotCollection() {
   const [BotData] = useOutletContext();
   const [sortOption,setSortOption] = useState("")
 
-
-  function handleSelectedClass(e){
-    if(e.target.checked){
-    setAllChecked([...allChecked,e.target.value])
-    }
-    else{
-    setAllChecked(allChecked.filter(item=>item!==e.target.value))
-    }
+  function handleSelectedClass(e){ 
+    setAllChecked(prevState => {
+      if (e.target.checked) {
+        return [...prevState, e.target.value];
+      } else {
+        return prevState.filter(item => item !== e.target.value);
+      }
+    })
   }
 
   function handleSortOption(e){

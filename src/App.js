@@ -7,8 +7,9 @@ const YOUR_ARMY_URL = "http://localhost:4001/your_army";
 const BOTS_URL = "http://localhost:4001/bots";
 // const YOUR_ARMY_URL = "https://bot-battlr-json-server.onrender.com/your_army";
 // const BOTS_URL = "https://bot-battlr-json-server.onrender.com/bots";
+export const emojis = [{Assault:"🛩️"},{Medic:"🚑"},{Defender:"🛡️"},{Witch:" 🧙‍♀️"},{Captain:"👨‍✈️"},{Support:"🪖"}]
 
-function App() {
+export default function App() {
 
   const [yourArmy,setYourArmy] = useState([])
   useEffect(()=>{
@@ -26,6 +27,8 @@ function App() {
       .catch(error => console.error('Error fetching bot data:', error));
   }, []);
 
+  
+
   return (
     <div className="App">
       <YourBotArmy yourArmy={yourArmy} setYourArmy={setYourArmy} setBotData={setBotData}/>
@@ -34,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+

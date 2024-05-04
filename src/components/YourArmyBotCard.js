@@ -1,4 +1,5 @@
 import logo from "./heart-ecg.png";
+import { emojis } from "../App";
 
 const YOUR_ARMY_API = "http://localhost:4001/your_army";
 const BOTS_API = "http://localhost:4001/bots";
@@ -8,6 +9,7 @@ const BOTS_API = "http://localhost:4001/bots";
 
 function YourArmyBotCard({ bot, id, image, name, botClass, catchphrase, health, damage, armor, setYourArmy, setBotData}) {
 
+  const botEmoji = emojis.find(item=>item[botClass])
   function handleBotDeletion() {
     fetch(`${YOUR_ARMY_API}/${id}`, {
       method: "DELETE",
@@ -48,7 +50,7 @@ function YourArmyBotCard({ bot, id, image, name, botClass, catchphrase, health, 
     <div className="card" style={{ minWidth: "10rem", maxWidth: "10rem" }}>
       <img src={image} className="card-img-top" style={{ backgroundColor: "grey", cursor: "alias" }} alt="Bot" onClick={releaseBot}/>
       <div className="card-body">
-        <h5 className="card-title">{name}</h5>
+        <h5 className="card-title">{name} {botEmoji[botClass]}</h5>
         <p className="card-text">{catchphrase}</p>
         <p className="card-text">
           <img src={logo} style={{ width: "15%" }} alt="health" /> {health} ⚡{damage} 🛡️{armor}

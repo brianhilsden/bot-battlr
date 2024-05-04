@@ -3,6 +3,7 @@ import logo from "./heart-ecg.png"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
+import { emojis } from "../App";
 
 const BOT_API_URL = "http://localhost:4001/bots";
 const YOUR_ARMY_API_URL = "http://localhost:4001/your_army";
@@ -15,6 +16,7 @@ function BotSpecs(){
     const params= useParams();
     const botId = params.id;
     const [bot,setBot] = useState({});
+    const botEmoji = emojis.find(item=>item[bot.bot_class])
 
     useEffect(()=>{
         fetch(`${BOT_API_URL}/${botId}`)
@@ -84,7 +86,7 @@ function BotSpecs(){
                     <p><b>Catchphrase</b></p>
                     <p>{bot.catchphrase}</p>
                     <br/>
-                    <p><b>Class: {bot.bot_class}</b></p>
+                    <p><b>Class: {bot.bot_class} {botEmoji[bot.bot_class]}</b></p>
                     <div style={{border: "1px solid grey", borderRadius: "8px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                         <img src={logo} style={{width:"8%"}} alt="health"/>{bot.health}&nbsp;&nbsp;<span>⚡{bot.damage}</span>&nbsp;&nbsp; <span>🛡️{bot.armor}</span>
                     </div>
