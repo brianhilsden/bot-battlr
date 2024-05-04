@@ -2,7 +2,6 @@ import { useOutletContext } from "react-router-dom";
 import BotCard from "./BotCard";
 function BotCollection() {
   const [BotData] = useOutletContext()
-  console.log(BotData);
  
     if(!BotData || !BotData[0]){
       return <h2>Loading...</h2>

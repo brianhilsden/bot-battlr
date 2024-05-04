@@ -1,33 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
 import YourBotArmy from './components/YourBotArmy';
 import { Outlet } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
-
+const YOUR_ARMY_URL = "http://localhost:4001/your_army";
+const BOTS_URL = "http://localhost:4001/bots";
+// const YOUR_ARMY_URL = "https://bot-battlr-json-server.onrender.com/your_army";
+// const BOTS_URL = "https://bot-battlr-json-server.onrender.com/bots";
 
 function App() {
   const [yourArmy,setYourArmy] = useState([])
   useEffect(()=>{
-      fetch("http://localhost:4001/your_army")
-      /* fetch("https://bot-battlr-json-server.onrender.com/your_army") */
-      .then(res=>res.json())
-      .then(data=>setYourArmy(data))
+    fetch(YOUR_ARMY_URL)
+    .then(res=>{
+      if (!res.ok) {
+        throw new Error('Failed to fetch your army data');
+      }
+      return res.json();
+    })
+    .then(data=>setYourArmy(data))
+    .catch(error => console.error('Error fetching your army data:', error));
   },[])
-  
+
   const [BotData, setBotData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4001/bots")
-    /* fetch("https://bot-battlr-json-server.onrender.com/bots") */
-      .then((res) => res.json())
+    fetch(BOTS_URL)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch bot data');
+        }
+        return res.json();
+      })
       .then((data) => setBotData(data))
-      
+      .catch(error => console.error('Error fetching bot data:', error));
+
   }, []);
- 
+
   return (
     <div className="App">
       <YourBotArmy yourArmy={yourArmy} setYourArmy={setYourArmy} setBotData={setBotData}/>
-      <Outlet context={[BotData,setYourArmy,setBotData]}/>     
+      <Outlet context={[BotData,setYourArmy,setBotData,yourArmy]}/>
     </div>
   );
 }
