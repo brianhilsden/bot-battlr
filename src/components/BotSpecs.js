@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "./heart-ecg.png"
-import { useParams } from "react-router-dom"
+import logo from "./heart-ecg.png";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { emojis } from "../App";
@@ -16,13 +16,17 @@ function BotSpecs(){
     const params= useParams();
     const botId = params.id;
     const [bot,setBot] = useState({});
-    const botEmoji = emojis.find(item=>item[bot.bot_class])
+    const [botEmoji,setBotEmoji] = useState(null);
 
     useEffect(()=>{
         fetch(`${BOT_API_URL}/${botId}`)
-        .then(res => res.json())
-        .then(data=>setBot(data))
-        .catch(error => console.error('Error fetching bot details:', error));
+        .then((res) => res.json())
+        .then((data) => {
+            setBot(data);
+            const emoji = emojis.find((item) => item[data.bot_class]);
+            setBotEmoji(emoji ? emoji[data.bot_class] : null); // Set botEmoji based on bot_class
+        })
+        .catch((error) => console.error("Error fetching bot details:", error));
     },[botId]);
 
     if(!bot.name){
@@ -86,7 +90,7 @@ function BotSpecs(){
                     <p><b>Catchphrase</b></p>
                     <p>{bot.catchphrase}</p>
                     <br/>
-                    <p><b>Class: {bot.bot_class} {botEmoji[bot.bot_class]}</b></p>
+                    <p><b>Class: {bot.bot_class} {botEmoji[bot.bot_class] && <span>{botEmoji[bot.bot_class]}</span>}</b></p>
                     <div style={{border: "1px solid grey", borderRadius: "8px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                         <img src={logo} style={{width:"8%"}} alt="health"/>{bot.health}&nbsp;&nbsp;<span>⚡{bot.damage}</span>&nbsp;&nbsp; <span>🛡️{bot.armor}</span>
                     </div>
