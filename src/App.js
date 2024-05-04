@@ -3,13 +3,14 @@ import YourBotArmy from './components/YourBotArmy';
 import { Outlet } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 
-const YOUR_ARMY_URL = "http://localhost:4001/your_army";
-const BOTS_URL = "http://localhost:4001/bots";
-// const YOUR_ARMY_URL = "https://bot-battlr-json-server.onrender.com/your_army";
-// const BOTS_URL = "https://bot-battlr-json-server.onrender.com/bots";
+/* const YOUR_ARMY_URL = "http://localhost:4001/your_army";
+const BOTS_URL = "http://localhost:4001/bots"; */
+const YOUR_ARMY_URL = "https://bot-battlr-json-server.onrender.com/your_army";
+const BOTS_URL = "https://bot-battlr-json-server.onrender.com/bots";
 export const emojis = [{Assault:"🛩️"},{Medic:"🚑"},{Defender:"🛡️"},{Witch:" 🧙‍♀️"},{Captain:"👨‍✈️"},{Support:"🪖"}]
 
 export default function App() {
+  const [refetchData,setRefetchData] = useState(false)
 
   const [yourArmy,setYourArmy] = useState([])
   useEffect(()=>{
@@ -25,14 +26,14 @@ export default function App() {
       .then((res) =>res.json())
       .then((data) => setBotData(data))
       .catch(error => console.error('Error fetching bot data:', error));
-  }, []);
+  }, [refetchData]);
 
   
 
   return (
     <div className="App">
       <YourBotArmy yourArmy={yourArmy} setYourArmy={setYourArmy} setBotData={setBotData}/>
-      <Outlet context={[BotData,setYourArmy,setBotData,yourArmy]}/>
+      <Outlet context={[BotData,setYourArmy,setBotData,yourArmy,setRefetchData]}/>
     </div>
   );
 }

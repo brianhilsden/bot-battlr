@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { emojis } from "../App";
 
-const BOT_API_URL = "http://localhost:4001/bots";
-const YOUR_ARMY_API_URL = "http://localhost:4001/your_army";
-/* const BOT_API_URL = "https://bot-battlr-json-server.onrender.com/bots"; */
-/* const YOUR_ARMY_API_URL = "https://bot-battlr-json-server.onrender.com/your_army"; */
+/* const BOT_API_URL = "http://localhost:4001/bots";
+const YOUR_ARMY_API_URL = "http://localhost:4001/your_army"; */
+const BOT_API_URL = "https://bot-battlr-json-server.onrender.com/bots";
+const YOUR_ARMY_API_URL = "https://bot-battlr-json-server.onrender.com/your_army";
 
 function BotSpecs(){
-    const [ ,setYourArmy,setBotData,yourArmy] = useOutletContext();
+    const [ ,setYourArmy,setBotData,yourArmy,setRefetchData] = useOutletContext();
     const navigate = useNavigate();
     const params= useParams();
     const botId = params.id;
@@ -74,6 +74,7 @@ function BotSpecs(){
                 return item.id!==botId
             }))
         }).then(()=>{
+            setRefetchData(prevState=>!prevState)
             navigate("/bot-battlr")
         })
         .catch(error => console.error('Error removing bot from collection:', error));
