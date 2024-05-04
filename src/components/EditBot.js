@@ -2,7 +2,7 @@ import { useState } from "react"
 
 const BOT_API_URL = "https://bot-battlr-json-server.onrender.com/bots";
 function EditBot({bot,handleEditForm,setRefetchData}){
-    const [formData,setFormData] = useState({name:bot.name,health:bot.health,damage:bot.damage,armor:bot.armor,bot_class:bot.bot_class,catchphrase:bot.catchphrase})
+    const [formData,setFormData] = useState({name:bot.name,health:bot.health,damage:bot.damage,armor:bot.armor,catchphrase:bot.catchphrase})
 
     function handleChange(e){
         const {name,value} = e.target;
@@ -44,10 +44,7 @@ function EditBot({bot,handleEditForm,setRefetchData}){
                 <label htmlFor="armor">Armor:</label>
                 <input className="form-control" type="text" name="armor" id="armor" placeholder="Armor" value={formData.armor} onChange={handleChange} />
             </div>
-            <div className="form-group mb-2">
-                <label htmlFor="bot_class">Bot Class:</label>
-                <input className="form-control" type="text" name="bot_class" id="bot_class" placeholder="Bot Class" value={formData.bot_class} onChange={handleChange} />
-            </div>
+           
             <div className="form-group">
                 <label htmlFor="catchphrase">Catchphrase:</label>
                 <input className="form-control" type="text" name="catchphrase" id="catchphrase" placeholder="Catchphrase" value={formData.catchphrase} onChange={handleChange} />
