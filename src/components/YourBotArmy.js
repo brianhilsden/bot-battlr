@@ -13,8 +13,10 @@ function YourBotArmy({yourArmy,setYourArmy,setBotData}){
             })
 
         }
+        
 
     </div>}
+   
     </>);
     
 }

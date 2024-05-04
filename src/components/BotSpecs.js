@@ -18,12 +18,7 @@ function BotSpecs(){
 
     useEffect(()=>{
         fetch(`${BOT_API_URL}/${botId}`)
-        .then(res =>{
-            if (!res.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return res.json();
-        })
+        .then(res => res.json())
         .then(data=>setBot(data))
         .catch(error => console.error('Error fetching bot details:', error));
     },[botId]);
@@ -60,7 +55,7 @@ function BotSpecs(){
         alert("Team complete. To select new ones, release or discharge members of your army")
     }
     }
-    
+
     function removeFromCollection(){
         fetch(`${BOT_API_URL}/${botId}`,{
             method:"DELETE",

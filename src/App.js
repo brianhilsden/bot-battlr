@@ -9,7 +9,7 @@ const BOTS_URL = "http://localhost:4001/bots";
 // const BOTS_URL = "https://bot-battlr-json-server.onrender.com/bots";
 
 function App() {
-  
+
   const [yourArmy,setYourArmy] = useState([])
   useEffect(()=>{
     fetch(YOUR_ARMY_URL)
