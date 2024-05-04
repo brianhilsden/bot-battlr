@@ -47,7 +47,7 @@ function YourArmyBotCard({ bot, id, image, name, botClass, catchphrase, health, 
   }
 
   return (
-    <div className="card" style={{ minWidth: "10rem", maxWidth: "10rem" }}>
+    <div className="card" style={{ minWidth: "10rem", maxWidth: "12rem" }}>
       <img src={image} className="card-img-top" style={{ backgroundColor: "grey", cursor: "alias" }} alt="Bot" onClick={releaseBot}/>
       <div className="card-body">
         <h5 className="card-title">{name} {botEmoji[botClass] && <span> {botEmoji[botClass]}</span>}</h5>

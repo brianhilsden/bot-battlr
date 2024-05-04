@@ -100,7 +100,7 @@ function BotSpecs(){
                     <h2>Name: {bot.name} </h2>
                     <p><b>Catchphrase</b></p>
                     <p>{bot.catchphrase}</p>
-                    <br/>
+                    
                     <p><b>Class: {bot.bot_class} {botEmoji[bot.bot_class] && <span>{botEmoji[bot.bot_class]}</span>}</b></p>
                     <div style={{border: "1px solid grey", borderRadius: "8px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                         <img src={logo} style={{width:"8%"}} alt="health"/>{bot.health}&nbsp;&nbsp;<span>⚡{bot.damage}</span>&nbsp;&nbsp; <span>🛡️{bot.armor}</span>
