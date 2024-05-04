@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { emojis } from "../App";
+import EditBot from "./EditBot";
 
 /* const BOT_API_URL = "http://localhost:4001/bots";
 const YOUR_ARMY_API_URL = "http://localhost:4001/your_army"; */
@@ -17,6 +18,7 @@ function BotSpecs(){
     const botId = params.id;
     const [bot,setBot] = useState({});
     const [botEmoji,setBotEmoji] = useState(null);
+    const [editForm,showEditForm] = useState(false)
 
     useEffect(()=>{
         fetch(`${BOT_API_URL}/${botId}`)
@@ -80,6 +82,14 @@ function BotSpecs(){
         .catch(error => console.error('Error removing bot from collection:', error));
 
     }
+
+    function handleEditForm(formData){
+        setBot(prevState=>({...prevState,...formData}))
+        showEditForm(prev=>!prev)
+        
+    }
+
+   console.log(bot);
     return(
             <div style={{ display: "flex", justifyContent: "center", height:"100vh",gap:"2rem", marginTop:"2rem"}}>
                 <div>
@@ -95,8 +105,12 @@ function BotSpecs(){
                     <div style={{border: "1px solid grey", borderRadius: "8px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                         <img src={logo} style={{width:"8%"}} alt="health"/>{bot.health}&nbsp;&nbsp;<span>⚡{bot.damage}</span>&nbsp;&nbsp; <span>🛡️{bot.armor}</span>
                     </div>
-                    <button onClick={()=>navigate("/bot-battlr") } className="btn btn-secondary mx-2 mt-2 mb-2" style={{width:"100%"}}>Go Back</button>
-                    <button className="btn btn-primary mx-2" onClick={enlistBot} style={{width:"100%"}}>Enlist</button>
+                    
+                    <button className="btn btn-primary mx-2 mt-2" onClick={enlistBot} style={{width:"100%"}}>Enlist</button>
+                    <button onClick={()=>showEditForm(prevState=>!prevState)} className="btn btn-success mx-2 mt-2 mb-2" style={{width:"100%"}}>Edit Bot</button>
+                    <button onClick={()=>navigate("/bot-battlr") } className="btn btn-secondary mx-2 mb-2" style={{width:"100%"}}>Go Back</button>
+
+                    {editForm && <EditBot bot={bot} handleEditForm={handleEditForm} setRefetchData={setRefetchData}/>}
                 </div>
             </div>
     )
