@@ -80,11 +80,11 @@ function BotSpecs(){
                 </div>
 
                 <div style={{width:"30%"}} className="d-flex flex-column align-items-center">
-                    <h2>Name:{bot.name} </h2>
+                    <h2>Name: {bot.name} </h2>
                     <p><b>Catchphrase</b></p>
                     <p>{bot.catchphrase}</p>
                     <br/>
-                    <p><b>Class:{bot.bot_class}</b></p>
+                    <p><b>Class: {bot.bot_class}</b></p>
                     <div style={{border: "1px solid grey", borderRadius: "8px",display:"flex",justifyContent:"center",alignItems:"center"}}>
                         <img src={logo} style={{width:"8%"}} alt="health"/>{bot.health}&nbsp;&nbsp;<span>⚡{bot.damage}</span>&nbsp;&nbsp; <span>🛡️{bot.armor}</span>
                     </div>

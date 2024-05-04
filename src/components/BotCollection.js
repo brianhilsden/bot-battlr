@@ -2,6 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import BotCard from "./BotCard";
 import { useState } from "react";
 import SortBar from "./SortBar";
+import SelectClass from "./SelectClass";
 
 function BotCollection() {
   const [allChecked,setAllChecked] = useState([])
@@ -9,112 +10,49 @@ function BotCollection() {
   const [sortOption,setSortOption] = useState("")
 
 
-function handleSelectedClass(e){
-  if(e.target.checked){
+  function handleSelectedClass(e){
+    if(e.target.checked){
     setAllChecked([...allChecked,e.target.value])
-  }
-  else{
+    }
+    else{
     setAllChecked(allChecked.filter(item=>item!==e.target.value))
+    }
   }
- }
 
- const botsToDisplay = BotData.filter(item=>{
-  if(allChecked.length>0){
-    return  allChecked.includes(item.bot_class) 
+  function handleSortOption(e){
+    setSortOption(e.target.value)
   }
-  else return true
- })
+  
+  function sortBots(sortOption){
+    if(sortOption==="health"){
+      return (a,b)=>b.health-a.health
+    }
+    else if(sortOption === "armor"){
+      return (a,b) => b.armor-a.armor
+    }
+    else if(sortOption === "damage" ){
+      return (a,b) => b.damage-a.damage
+    }
+    else{
+      return ()=>0
+    }
+  }
 
- function handleSortOption(e){
-  setSortOption(e.target.value)
-
-}
-function sortBots(sortOption){
-  if(sortOption==="health"){
-    return (a,b)=>b.health-a.health
-  }
-  else if(sortOption === "armor"){
-    return (a,b) => b.armor-a.armor
-  }
-  else if(sortOption === "damage" ){
-    return (a,b) => b.damage-a.damage
-  }
-  else{
-    return ()=>0
-  }
-}
+  const botsToDisplay = BotData.filter(item=>{
+    if(allChecked.length>0){
+      return  allChecked.includes(item.bot_class) 
+    }
+    else return true
+  })
 
 
- if (!BotData[0]) {
-  return <h2>Loading...</h2>;
-}
-  return (
+  if (!BotData[0]) {
+    return <h2>Loading...</h2>;
+  }
+    return (
     <>
-      <ul
-        className="list-group" style={{ display: "flex", flexDirection: "row" }}>
-          <h4 className="d-flex align-items-center">Choose class:</h4> &nbsp;&nbsp;    
-        <li className="list-group-item" style={{ flex: 1 }}>
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value="Witch"
-            onChange={handleSelectedClass}
-            aria-label="..."
-          />
-          Witch
-        </li>
-        <li className="list-group-item" style={{ flex: 1 }}>
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value="Assault"
-            onChange={handleSelectedClass}
-            aria-label="..."
-          />
-          Assault
-        </li>
-        <li className="list-group-item" style={{ flex: 1 }}>
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value="Defender"
-            onChange={handleSelectedClass}
-            aria-label="..."
-          />
-          Defender
-        </li>
-        <li className="list-group-item" style={{ flex: 1 }}>
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value="Medic"
-            onChange={handleSelectedClass}
-            aria-label="..."
-          />
-         Medic
-        </li>
-        <li className="list-group-item" style={{ flex: 1 }}>
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value="Captain"
-            onChange={handleSelectedClass}
-            aria-label="..."
-          />
-          Captain
-        </li>
-        <li className="list-group-item" style={{ flex: 1 }}>
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value="Support"
-            onChange={handleSelectedClass}
-            aria-label="..."
-          />
-          Support
-        </li>
-      </ul>
-      <br/>
+      <SelectClass handleSelectedClass={handleSelectedClass}/>
+      
       <SortBar handleSortOption={handleSortOption} sortOption={sortOption}/>
      
       <div
