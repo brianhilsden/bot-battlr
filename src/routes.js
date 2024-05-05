@@ -3,7 +3,6 @@ import BotCollection from "./components/BotCollection";
 import BotSpecs from "./components/BotSpecs";
 import ErrorPage from "./components/ErrorPage";
 
-
 const routes = [
     { 
     path: "/bot-battlr",

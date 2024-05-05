@@ -29,10 +29,7 @@ function BotSpecs(){
         .catch((error) => console.error("Error fetching bot details:", error));
     },[botId]);
 
-    if(!bot.name){
-        return <p >Loading...</p>
-    }
-
+   
     function enlistBot(){
         const checkClass = yourArmy.find(item=>item.bot_class === bot.bot_class);
         if(yourArmy.length<6){
@@ -87,7 +84,11 @@ function BotSpecs(){
         
     }
 
-   console.log(bot);
+   
+    if(!bot.name){
+        return <p >Loading...</p>
+    }
+
     return(
             <div style={{ display: "flex", justifyContent: "center", height:"100vh",gap:"2rem", marginTop:"2rem"}}>
                 <div>
