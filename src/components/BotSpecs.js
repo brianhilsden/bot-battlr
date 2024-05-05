@@ -84,7 +84,6 @@ function BotSpecs(){
         
     }
 
-   
     if(!bot.name){
         return <p >Loading...</p>
     }
