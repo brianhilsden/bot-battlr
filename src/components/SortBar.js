@@ -1,4 +1,3 @@
-
 function SortBar({handleSortOption,sortOption}){
    
     return(

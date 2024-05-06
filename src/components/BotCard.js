@@ -10,7 +10,7 @@ function BotCard({ id, image, name, botClass, catchphrase, health, damage, armor
       <div className="card-body">
         <h5 className="card-title">{name} {botEmoji[botClass]}</h5>
         <p className="card-text">{catchphrase}</p>
-        <p className="card-text"><img src={logo} style={{width:"15%"}} alt="health"/>{health}  x`{damage}  🛡️{armor}</p>
+        <p className="card-text"><img src={logo} style={{width:"15%"}} alt="health"/>{health}  ⚡{damage}  🛡️{armor}</p>
        
       </div>
     </div>
